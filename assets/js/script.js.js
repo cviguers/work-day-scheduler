@@ -33,21 +33,38 @@ $(function () {
   
   // global variables
   var currentTime = dayjs();
-  var hourToCheck = dayjs(currentTime);
 
-  
+  // adding each id to local storage
+  $("#hour9 .description").val(localStorage.getItem("hour9"));
+  $("#hour10 .description").val(localStorage.getItem("hour10"));
+  $("#hour11 .description").val(localStorage.getItem("hour11"));
+  $("#hour12 .description").val(localStorage.getItem("hour12"));
+  $("#hour13 .description").val(localStorage.getItem("hour13"));
+  $("#hour14 .description").val(localStorage.getItem("hour14"));
+  $("#hour15 .description").val(localStorage.getItem("hour15"));
+  $("#hour16 .description").val(localStorage.getItem("hour16"));
+  $("#hour17 .description").val(localStorage.getItem("hour17"));
 
-  // determines if hour is past, present or future
-  if (hourToCheck.isBefore(currentTime)) {
-    $(hourContainer).addClass("past");
-  
-  }; else (hourToCheck.isSame(currentTime)) { 
-    $(hourContainer).addClass("present");
-  
-  }; else { (hourToCheck.isAfter(currentTime)) 
-    $(hourContainer).addClass("future");
-  
-  };
+
+  // compares current hour to id to determine class
+  $(".hour").each(function() {
+    var hourToCheck = +$(this).parent().attr("id").split("-")[1];
+    console.log(hourToCheck);
+    console.log(currentTime.hour());
+    
+    if (hourToCheck < currentTime.hour()) {
+      $(this).addClass("past");
+    } 
+    else if (hourToCheck === currentTime.hour()) {
+      $(this).addClass("present");
+    }
+    else if (hourToCheck > currentTime.hour()) {
+      $(this).addClass("future");
+    }
+  });
+
+
+
   // uses DayJS to display current date
   $('#currentDay').text(currentTime.format('MMM DD, YYYY'));
 
