@@ -27,7 +27,7 @@ $(function () {
     }
   });
 
-    //Save data to local storage on click
+    //save data to local storage on click
     $(".saveBtn").click(function (event) {
       event.preventDefault();
       var value = $(this).siblings(".description").val();
@@ -35,7 +35,7 @@ $(function () {
       localStorage.setItem(time,value);
   });
 
-  //Retrieve data from local storage 
+  //retrieve data from local storage on page load 
   $('#hour-9 .description').val(localStorage.getItem('9'));
   $('#hour-10 .description').val(localStorage.getItem('10'));
   $('#hour-11 .description').val(localStorage.getItem('11'));
